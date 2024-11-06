@@ -1,26 +1,4 @@
-/*
-  -----------------------
-  ElegantOTA - Async Demo Example
-  -----------------------
 
-  NOTE: Make sure you have enabled Async Mode in ElegantOTA before compiling this example!
-  Guide: https://docs.elegantota.pro/async-mode/
-
-  Skill Level: Beginner
-
-  This example provides with a bare minimal app with ElegantOTA functionality which works
-  with AsyncWebServer.
-
-  Github: https://github.com/ayushsharma82/ElegantOTA
-  WiKi: https://docs.elegantota.pro
-
-  Works with both ESP8266 & ESP32
-
-  -------------------------------
-
-  Upgrade to ElegantOTA Pro: https://elegantota.pro
-
-*/
 
 #if defined(ESP8266)
   #include <ESP8266WiFi.h>
@@ -99,8 +77,22 @@ void setup(void) {
 
   server.begin();
   Serial.println("HTTP server started");
+
+   pinMode(2,OUTPUT);
+
+
+
+
+
 }
 
 void loop(void) {
   ElegantOTA.loop();
+
+  delay(500);
+  digitalWrite(2,HIGH);
+  delay(500);
+  digitalWrite(2,LOW);
+
+
 }
