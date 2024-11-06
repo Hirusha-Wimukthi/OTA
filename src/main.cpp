@@ -31,8 +31,7 @@
 #include <ESPAsyncWebServer.h>
 #include <ElegantOTA.h>
 
-const char* ssid = "Hirusha12";
-const char* password = "12345678";
+
 
 AsyncWebServer server(80);
 
@@ -62,10 +61,10 @@ void onOTAEnd(bool success) {
   // <Add your own code here>
 }
 
-void setup(void) {
-  Serial.begin(115200);
-  WiFi.mode(WIFI_STA);
-  WiFi.begin(ssid, password);
+void wifiinit(const char* ssid,const char* password)
+{
+ WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid,password);
   Serial.println("");
 
   // Wait for connection
@@ -78,6 +77,15 @@ void setup(void) {
   Serial.println(ssid);
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
+
+
+
+}
+
+void setup(void) {
+  Serial.begin(115200);
+  wifiinit("Hirusha12","12345678");
+ 
 
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
     request->send(200, "text/plain", "Hi! This is ElegantOTA AsyncDemo.");
